@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.item_write input {padding:5px 10px;background:#fdfdfd;outline:none}
+.item_write select {padding:4px 5px}
+.item_write select:focus {outline:none}
+.item_write .title {font-size:22px;margin-bottom:20px;color:#666;letter-spacing:-1px}
+
+.item_write .info input {width:306.7px;margin:15px}
+.item_write .info input:first-child {margin:0}
+.item_write .info input:last-child {margin-right:0}
+.item_write .delivery {margin-right:7px}
+.item_write .delivery button {position:relative;margin-left:-64px;padding:0 5px;background:#fc5230;color:#FFF;border:0}
+
+.item_write .subject {width:955px;float:left}
+.item_write .category {width:307px;float:right}
+.item_write textarea {width:1280px;margin-top:15px !important;padding:10px}
+
+.item_write .thumbnail {margin-top:15px;padding:10px 0;border:1px solid #b5b5b5;border-right-color:#d4d4d4;border-bottom-color:#d4d4d4}
+.item_write .thumbnail span {position:relative;top:1px;margin:0 15px}
+.item_write .thumbnail label {padding:0 5px 1px;color:#FFF;background:#fc5230;border:1px solid #ec4524;cursor:pointer}
+.item_write .thumbnail input[type=file] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);border:0}
+
+.item_write .btn {text-align:center;margin-top:30px}
+.item_write .btn .back {width:100px;height:45px;margin-right:10px;background:#e0e0e0;border:1px solid #cecece}
+.item_write .btn .submit {width:250px;height:45px;color:#FFF;background:#3b9abf;border:1px solid #1f799c}
