@@ -42,21 +42,16 @@ String thumbnail = itemBean.getThumbnail();
 
 <style>
 .fixed_img_row {
-	width: 550px;
+	width: 1115px;
 	height: 200px;
 	float:left;
 }
 
-.fixed_img_row ul {
-	width:1115px;
-}
-
 .fixed_img_row .desc {
-	width:550px;
+	width:1115px;
 	position: relative;
-	margin: 0 0 -1px 0;
-	padding: 15px 0;
-	border: 1px solid #eee;
+	padding: 20px 0;
+	border-top:1px solid #bcbcbc;
 	float:left;
 }
 
@@ -76,13 +71,35 @@ String thumbnail = itemBean.getThumbnail();
 	top:0;
 	right:0;
 	width:150px;
-	height:152px;
+	height:161px;
 	padding:15px;
 	border-left:1px solid #eee;
 }
 
-.fixed_img_row .desc:nth-child(odd) {
-	margin-right:15px;
+.fixed_img_row .desc .price_now .price {
+	font-weight:bold;
+	color:#000;
+	font-size:19px;
+	font-family:Tahoma;
+	position:relative;
+	top:2px;
+	padding-left:3px;
+}
+
+.fixed_img_row .desc .price_now .ing {
+	color:#fc5230;
+	padding-left:5px;
+	font-weight:500;
+	position:relative;
+	top:-2px;
+}
+
+.fixed_img_row .desc .datetime_end {
+	line-height:40px;
+}
+
+.fixed_img_row .desc .category {
+	float:left;
 }
 
 .fixed_img_row .desc:after {
@@ -97,6 +114,7 @@ String thumbnail = itemBean.getThumbnail();
 	float: left;
 	position: relative;
 	width: 120px;
+	height: 120px;
 	margin:0 15px;
 	background: #eee;
 	color: #666;
@@ -200,9 +218,16 @@ String thumbnail = itemBean.getThumbnail();
 					</span>
 					<span class="subject"><%=articleList.get(i).getName() %></span>
 				</a>
-				<p><%=articleList.get(i).getCategory() %></p>
-				<p><%=articleList.get(i).getWriteTime() %></p>
-				<p>시작가 : <span class="price_formatting"><%=articleList.get(i).getStartPrice() %></span></p>
+				<p class="price_now">
+					현재가<span class="price_formatting price"><%=articleList.get(i).getStartPrice() %></span><span class="price">원</span>
+					<span class="ing">0명 입찰중</span>
+				</p>
+				<p class="datetime_end">
+					마감일시 <%=articleList.get(i).getEndTime() %>
+					<span>(0일 0시간0분 남음)</span>
+				</p>
+				<p class="category"><%=articleList.get(i).getCategory() %></p>
+				<p class="delivery">| 배송비 <span class="price_formatting"><%=articleList.get(i).getDeliveryPrice() %></span>원</p>
 				<span class="member_info"><a href="상점주소"><%=articleList.get(i).getMemberID() %></a></span>
 			</li>
 			<% } %>
