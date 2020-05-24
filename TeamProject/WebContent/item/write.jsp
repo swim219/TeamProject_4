@@ -43,12 +43,12 @@
 			<input type="datetime" class="datepicker-here" data-language="ko" data-timepicker="true" name="datetime_end" placeholder="마감일시" data-position="left top" maxlength="20" readonly="readonly" required="required">
 		</div>
 		<textarea id="summernote" name="content"></textarea>
-		<div class="thumbnail">
-			<span>썸네일 대표 이미지</span>
-			<label for="file">업로드</label>
-			<input type="file" id="file" name="filename" required="required">
-			<span>이 곳에 등록한 이미지가 LIVE 리스트에 보입니다.</span>
-		</div>
+<!-- 		<div class="thumbnail"> -->
+<!-- 			<span>썸네일 대표 이미지</span> -->
+<!-- 			<label for="file">업로드</label> -->
+<!-- 			<input type="file" id="file" name="thumbnail" required="required"> -->
+<!-- 			<span>이 곳에 등록한 이미지가 LIVE 리스트에 보입니다.</span> -->
+<!-- 		</div> -->
 		<div class="btn">
 			<input type="button" class="back" onclick="history.back();" value="취소">
 			<button class="submit">출품 등록하기</button>
@@ -110,10 +110,6 @@
 			return false;
 		} else if(!fi.datetime_end.value) {
 			alert("마감일시를 입력해주세요.");
-			return false;
-		} else if(fi.price_start.value >= fi.price_end.value) {
-			alert("경매 시작가가 낙찰가보다 같거나 높을 수 없습니다.");
-			fi.price_start.focus();
 			return false;
 		}
 		

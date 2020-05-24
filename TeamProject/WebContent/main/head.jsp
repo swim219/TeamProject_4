@@ -63,7 +63,7 @@
 				<div class="logo"><a href="../main/index.jsp"><img src="../img/logo.png"></a></div>
 				<nav>
 					<ul>
-						<li><a href="#">실시간경매</a></li>
+						<li><a href="../item/list.it">실시간경매</a></li>
 						<li><a href="#">베스트상점</a></li>
 						<li><a href="#">땅땅샵</a></li>
 						<li class="btn_more">더보기</li>
@@ -79,7 +79,7 @@
 					<span><a href="#">짧은회원가입</a></span>
 				</div>
 				<div class="search">
-					<input type="text" class="txt_search" name="keyword" placeholder="어떤 상품을 찾고 계신가요?">
+					<input type="text" class="txt_search" name="keyword" autocomplete="off" placeholder="어떤 상품을 찾고 계신가요?">
 				</div>
 				<div class="search_tab">
 					<jsp:include page="../main/search_tab.jsp" />
@@ -97,7 +97,7 @@
 				</div>
 				<div class="menu_list">	
 					<span class="menu_subject">안전거래</span>
-					<a href="#">출품하기</a>
+					<a href="../item/write.it">출품하기</a>
 					<a href="#">신고하기</a>
 					<a href="#">신고조회</a>
 					<a href="#">주문내역</a>

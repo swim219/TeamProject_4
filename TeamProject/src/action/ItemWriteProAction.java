@@ -23,10 +23,6 @@ import svc.ItemWriteProService;
 import vo.ActionForward;
 import vo.ItemBean;
 
-/*
- * 파일 업로드로 올려도 에디터 이미지가 같이 들어가는 문제가 있음
- */
-
 public class ItemWriteProAction implements Action {
 	
 	@Override
@@ -42,13 +38,23 @@ public class ItemWriteProAction implements Action {
 		
 		try {
 			mr = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
-			
-			Enumeration files = mr.getFileNames();
-			
-			String file = (String)files.nextElement();
-			filename = mr.getFilesystemName(file);
+
+			filename = mr.getOriginalFileName("files");
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		
+		if(filename == null) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			out.println("alert('대표 이미지가 등록되지 않았습니다.\\n썸네일 이미지는 내용 마지막에 삽입된 이미지가 썸네일로 지정됩니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+
+			return forward;
 		}
 		
 		ParameterBlock pb = new ParameterBlock();
@@ -56,10 +62,10 @@ public class ItemWriteProAction implements Action {
 		RenderedOp rop = JAI.create("fileload", pb);
 		
 		BufferedImage bi = rop.getAsBufferedImage();
-		BufferedImage thumb = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+		BufferedImage thumb = new BufferedImage(120, 120, BufferedImage.TYPE_INT_RGB);
 		
 		Graphics2D g2 = thumb.createGraphics();
-		g2.drawImage(bi, 0, 0, 100, 100, null);
+		g2.drawImage(bi, 0, 0, 120, 120, null);
 		
 		File file = new File(realFolder, "/sm_" + filename);
 		ImageIO.write(thumb, "jpg", file);
@@ -86,13 +92,13 @@ public class ItemWriteProAction implements Action {
 		
 		if(!isSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
-			
 			PrintWriter out = response.getWriter();
 			
 			out.println("<script>");
 			out.println("alert('상품 등록에 문제가 발생하였습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);

@@ -19,6 +19,7 @@ hr {display:none}
 pre {overflow-x:scroll;font-size:1.1em}
 a {color:#000;text-decoration:none}
 *, :after, :before {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+*:focus {outline:none}
 input[type=text],input[type=password], textarea, button {outline:none}
 input, textarea, select {border:1px solid #b5b5b5;border-right-color:#d4d4d4;border-bottom-color:#d4d4d4}
 
@@ -80,3 +81,22 @@ footer .precaution {clear:both;background:#000;text-align:center;font-size:12px;
 #category span:nth-child(7) {background:url(../img/sprites_category.png) -300px 2px no-repeat}
 #category span:nth-child(8) {background:url(../img/sprites_category.png) -344px 0 no-repeat}
 #category span:nth-child(9) {background:url(../img/sprites_category.png) -390px 0 no-repeat}
+
+.keyword_tab_show {width:337px;height:420px;box-shadow:0 0 4px 1px #999}
+.keyword_tab_show .tab {overflow:hidden} 
+.keyword_tab_show .tab li {float:left;width:168.5px;background:#f1f1f1;border:1px solid #e4e4e4;border-bottom:0;letter-spacing:-1px;color:#333;cursor:pointer;text-align:center;padding:8px 0}
+.keyword_tab_show .tab li:first-child {border-right:0}
+.keyword_tab_show .tab li:last-child {border-left:0}
+.keyword_tab_show .wrap {position:relative;width:336px;border:1px solid #e4e4e4}
+.keyword_tab_show .wrap div {position:absolute;left:0;top:0}
+.keyword_tab_show .wrap div:nth-child(2) {display:none} 
+.keyword_tab_show .wrap div:nth-child(3) {display:none} 
+.keyword_tab_show .wrap div:nth-child(4) {display:none} 
+.keyword_tab_show .wrap span {display:block;padding:7px 15px;font-size:14px}
+.keyword_tab_show .wrap ul {float:left;width:336px;border-top:1px solid #e4e4e4}
+.keyword_tab_show .wrap ul li {float:left;width:150px;padding:9px 0;color:gray;font-size:12px}
+.keyword_tab_show .close {text-align:right}
+.keyword_tab_show .del {margin-left:13px}
+.keyword_tab_show .box2 {border:1px solid pink;display:block;float:right;height:9px}
+.keyword_tab_show .wrap {background:#FFF}
+.keyword_tab_show .wrap div {background:#FFF;color:#444}

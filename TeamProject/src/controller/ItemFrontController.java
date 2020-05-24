@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ItemListAction;
 import action.ItemWriteProAction;
 import vo.ActionForward;
 
@@ -38,9 +39,23 @@ public class ItemFrontController extends HttpServlet {
 			}
 		}
 		else if(command.equals("/item/list.it")) {
-			forward = new ActionForward();
-			forward.setPath("/item/list.jsp");
+			action = new ItemListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+//		else if(command.equals("/item/view.it")) {
+//			action = new ItemViewAction();
+//			
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
 		if(forward != null) {
 			if(forward.isRedirect()) { // Redirect 방식 (주소 변경 O, request 객체 공유 X)

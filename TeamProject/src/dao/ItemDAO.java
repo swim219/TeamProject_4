@@ -5,8 +5,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import vo.ItemBean;
+import static db.JdbcUtil.*;
 
 public class ItemDAO {	
 	private Connection con = null;
@@ -29,7 +31,7 @@ public class ItemDAO {
 		this.con = con;
 	}
 
-	// 게시물 등록
+	// 상품 등록
 	public int insertArticle(ItemBean itemBean) {
 		int insertCount = 1;
 		
@@ -55,9 +57,76 @@ public class ItemDAO {
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return insertCount;
+	}
+	
+	// 라이브 리스트 상품 전체 갯수
+	public int selectListCount() {
+		int listCount = 0;
+		
+		try {
+			String sql = "SELECT COUNT(it_no) FROM item";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	// 라이브 리스트 출력
+	public ArrayList<ItemBean> selectArticleList(int page, int limit) {
+		int startRow = (page - 1) * limit; // 가져올 게시물에 대한 시작 행 번호 계산
+		
+		ArrayList<ItemBean> articleList = new ArrayList<ItemBean>();
+		
+		try {
+			String sql = "SELECT * FROM item ORDER BY it_no DESC LIMIT ?, ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ItemBean article = new ItemBean();
+				article.setNo(rs.getInt("it_no"));
+				article.setName(rs.getString("it_name"));
+				article.setMemberID(rs.getString("mb_id"));
+				article.setContent(rs.getString("it_content"));
+				article.setThumbnail(rs.getString("it_thumbnail"));
+				article.setWriteTime(rs.getTimestamp("it_write_datetime"));
+				article.setEndTime(rs.getString("it_end_datetime"));
+				article.setMaxPrice(rs.getInt("it_max_price"));
+				article.setStartPrice(rs.getInt("it_start_price"));
+				article.setDeliveryPrice(rs.getInt("it_delivery_price"));
+				article.setCategory(rs.getString("it_category"));
+				article.setIsDelete(rs.getInt("it_is_delete"));
+				
+				articleList.add(article);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return articleList;
 	}
 	
 }
